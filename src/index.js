@@ -37,8 +37,9 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: "none",
-  padding: 4,
+  padding: 3,
   width: 50,
+  margin: "0 auto",
 
   // change background colour if dragging
   background: isDragging ? "lightgreen" : "grey",
@@ -50,13 +51,13 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
   padding: 4,
-  margin: 4,
+  margin: "4",
   width: 80,
 });
 
 function QuoteApp() {
   // getItems = (count, offset = 0)
-  const [stateItem, setStateItem] = useState([getItems(4), getItems(4, 4), getItems(4, 8), getItems(7, 12), getItems(0, 19)]);
+  const [stateItem, setStateItem] = useState([getItems(4), getItems(4, 4), getItems(4, 8), getItems(7, 12), getItems(6, 19)]);
   // const [stateItem, setStateItem] = useState([getItems(4)]);
 
   function onDragEnd(result) {
@@ -101,6 +102,14 @@ function QuoteApp() {
     newState[3].shift();
     newState[3] = [...newState[3], ...sourceClone];
 
+    // ランダム性をもたせる
+    const taihi1 = newState[3][newState[3].length - 6];
+    const taihi2 = newState[3][newState[3].length - 5];
+    newState[3][newState[3].length - (4 + 2)] = newState[3][newState[3].length - 4];
+    newState[3][newState[3].length - (4 + 1)] = newState[3][newState[3].length - 3];
+    newState[3][newState[3].length - 4] = taihi1;
+    newState[3][newState[3].length - 3] = taihi2;
+
     setStateItem(newState.filter(group => group.length));
   }
   function gameEnd2() {
@@ -120,6 +129,14 @@ function QuoteApp() {
     newState[3].shift();
     newState[3] = [...newState[3], ...sourceClone];
 
+    // ランダム性をもたせる
+    const taihi1 = newState[3][newState[3].length - 6];
+    const taihi2 = newState[3][newState[3].length - 5];
+    newState[3][newState[3].length - (4 + 2)] = newState[3][newState[3].length - 4];
+    newState[3][newState[3].length - (4 + 1)] = newState[3][newState[3].length - 3];
+    newState[3][newState[3].length - 4] = taihi1;
+    newState[3][newState[3].length - 3] = taihi2;
+
     setStateItem(newState.filter(group => group.length));
   }
   function gameEnd3() {
@@ -138,6 +155,14 @@ function QuoteApp() {
     newState[3].shift();
     newState[3].shift();
     newState[3] = [...newState[3], ...sourceClone];
+
+    // ランダム性をもたせる
+    const taihi1 = newState[3][newState[3].length - 6];
+    const taihi2 = newState[3][newState[3].length - 5];
+    newState[3][newState[3].length - (4 + 2)] = newState[3][newState[3].length - 4];
+    newState[3][newState[3].length - (4 + 1)] = newState[3][newState[3].length - 3];
+    newState[3][newState[3].length - 4] = taihi1;
+    newState[3][newState[3].length - 3] = taihi2;
 
     setStateItem(newState.filter(group => group.length));
   }
@@ -269,46 +294,88 @@ function QuoteApp() {
           )}
         </Droppable>
       </div>
-      <Droppable key={3} droppableId={`${3}`}>
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver)}
-            {...provided.droppableProps}
-          >
-            <div>待機</div>
-            {stateItem[3].map((item, index) => (
-              <Draggable
-                key={item.id}
-                draggableId={item.id}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={getItemStyle(
-                      snapshot.isDragging,
-                      provided.draggableProps.style
-                    )}
-                  >
+      <div style={{ display: "flex" }}>
+        <Droppable key={3} droppableId={`${3}`}>
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              style={getListStyle(snapshot.isDraggingOver)}
+              {...provided.droppableProps}
+            >
+              <div>順番待ち</div>
+              {stateItem[3].map((item, index) => (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
                     <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-around"
-                      }}
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
                     >
-                      {item.content}
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-around"
+                        }}
+                      >
+                        {item.content}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+        <Droppable key={4} droppableId={`${4}`}>
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              style={getListStyle(snapshot.isDraggingOver)}
+              {...provided.droppableProps}
+            >
+              <div>休み</div>
+              {stateItem[4].map((item, index) => (
+                <Draggable
+                  key={item.id}
+                  draggableId={item.id}
+                  index={index}
+                >
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-around"
+                        }}
+                      >
+                        {item.content}
+                      </div>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
     </DragDropContext>
   );
 }
