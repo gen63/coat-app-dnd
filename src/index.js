@@ -55,7 +55,15 @@ const getListStyle = isDraggingOver => ({
   padding: 5,
   margin: 5,
   width: 100,
+  "min-height": 230,
+  position: "relative"
 });
+
+const buttonStyle = {
+  position: "absolute",
+  bottom: 0,
+  margin: 5,
+};
 
 const alignItemsStyle = {
   display: "flex",
@@ -209,7 +217,7 @@ function QuoteApp() {
                   </Draggable>
                 ))}
                 {provided.placeholder}
-                <button type="button" onClick={gameEnd1} style={{ margin: "3px", width: "60px" }}>終了</button>
+                <button type="button" onClick={gameEnd1} style={buttonStyle}>終了</button>
               </div>
             )}
           </Droppable>
@@ -250,7 +258,7 @@ function QuoteApp() {
                   </Draggable>
                 ))}
                 {provided.placeholder}
-                <button type="button" onClick={gameEnd2} style={{ margin: "3px", width: "60px" }}>終了</button>
+                <button type="button" onClick={gameEnd2} style={buttonStyle}>終了</button>
               </div>
             )}
           </Droppable>
@@ -291,7 +299,7 @@ function QuoteApp() {
                   </Draggable>
                 ))}
                 {provided.placeholder}
-                <button type="button" onClick={gameEnd3} style={{ margin: "3px", width: "60px" }}>終了</button>
+                <button type="button" onClick={gameEnd3} style={buttonStyle}>終了</button>
               </div>
             )}
           </Droppable>
