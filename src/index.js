@@ -10,6 +10,8 @@ const getItems = (count, offset = 0) =>
     content: `No${k + 1 + offset}`
   }));
 
+const stateItemList = [];
+
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -102,12 +104,27 @@ function QuoteApp() {
     }
   }
 
+  function undo() {
+    if (stateItemList.length < 1) {
+      return;
+    }
+    const newState = stateItemList[stateItemList.length - 1].slice();
+    stateItemList.pop();
+    setStateItem(newState);
+  }
+
   function gameEnd1() {
     const coatNo = 0;
     // コートの人数が4人以下の時は試合終了させない
     if (stateItem[coatNo].length < 4) {
       return;
     }
+
+    // 現在の状態を退避
+    // stateItemList.push([].concat(stateItem));
+    const a = [];
+    stateItem.map((item) => a.push([].concat(item)));
+    stateItemList.push(a);
 
     // 試合が終わった4人を退避
     const gameFinishMember = stateItem[coatNo].slice(0, 4);
@@ -311,6 +328,10 @@ function QuoteApp() {
               </div>
             )}
           </Droppable>
+
+        </div>
+        <div style={alignItemsStyle}>
+          <button type="button" onClick={undo}>Ctrl+Z</button>
         </div>
         <div style={alignItemsStyle}>
           <Droppable key={3} droppableId={`${3}`}>
