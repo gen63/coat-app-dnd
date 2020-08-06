@@ -116,7 +116,7 @@ function QuoteApp() {
   function gameEnd1() {
     const coatNo = 0;
     // コートの人数が4人以下の時は試合終了させない
-    if (stateItem[coatNo].length < 4) {
+    if (stateItem[coatNo].length != 4) {
       return;
     }
 
@@ -148,7 +148,7 @@ function QuoteApp() {
   function gameEnd2() {
     const coatNo = 1;
     // コートの人数が4人以下の時は試合終了させない
-    if (stateItem[coatNo].length < 4) {
+    if (stateItem[coatNo].length != 4) {
       return;
     }
 
@@ -180,7 +180,7 @@ function QuoteApp() {
   function gameEnd3() {
     const coatNo = 2;
     // コートの人数が4人以下の時は試合終了させない
-    if (stateItem[coatNo].length < 4) {
+    if (stateItem[coatNo].length != 4) {
       return;
     }
 
