@@ -219,7 +219,6 @@ function QuoteApp() {
                 ))}
                 {provided.placeholder}
                 <button type="button" onClick={gameEnd1} style={buttonStyle}>終了</button>
-                <div></div>
               </div>
             )}
           </Droppable>
