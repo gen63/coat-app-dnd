@@ -117,9 +117,11 @@ function QuoteApp() {
     const newState = [...stateItem];
     // 待機の末尾2人を削除
     [...Array(2)].map(() => newState[3].pop());
-    newState[3] = [...newState[3], ...gameFinishMember.slice(0, 2)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 3)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(0, 1)];
     newState[3] = [...newState[3], ...waitLast2Member];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 4)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(3, 4)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(1, 2)];
 
     const nextGameMember = newState[3].slice(0, 4);
     newState[coatNo] = nextGameMember;
@@ -142,9 +144,11 @@ function QuoteApp() {
     const newState = [...stateItem];
     // 待機の末尾2人を削除
     [...Array(2)].map(() => newState[3].pop());
-    newState[3] = [...newState[3], ...gameFinishMember.slice(0, 2)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 3)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(0, 1)];
     newState[3] = [...newState[3], ...waitLast2Member];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 4)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(3, 4)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(1, 2)];
 
     const nextGameMember = newState[3].slice(0, 4);
     newState[coatNo] = nextGameMember;
@@ -167,9 +171,11 @@ function QuoteApp() {
     const newState = [...stateItem];
     // 待機の末尾2人を削除
     [...Array(2)].map(() => newState[3].pop());
-    newState[3] = [...newState[3], ...gameFinishMember.slice(0, 2)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 3)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(0, 1)];
     newState[3] = [...newState[3], ...waitLast2Member];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 4)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(3, 4)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(1, 2)];
 
     const nextGameMember = newState[3].slice(0, 4);
     newState[coatNo] = nextGameMember;
