@@ -53,9 +53,10 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
   padding: 5,
+  "padding-bottom": 35,
   margin: 5,
   width: 100,
-  "min-height": 230,
+  "min-height": 200,
   position: "relative"
 });
 
@@ -218,6 +219,7 @@ function QuoteApp() {
                 ))}
                 {provided.placeholder}
                 <button type="button" onClick={gameEnd1} style={buttonStyle}>終了</button>
+                <div></div>
               </div>
             )}
           </Droppable>
