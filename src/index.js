@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import * as serviceWorker from './serviceWorker';
 
 // fake data generator
 const getItems = (count, offset = 0) =>
