@@ -121,7 +121,6 @@ function QuoteApp() {
     }
 
     // 現在の状態を退避
-    // stateItemList.push([].concat(stateItem));
     const a = [];
     stateItem.map((item) => a.push([].concat(item)));
     stateItemList.push(a);
@@ -153,6 +152,11 @@ function QuoteApp() {
       return;
     }
 
+    // 現在の状態を退避
+    const a = [];
+    stateItem.map((item) => a.push([].concat(item)));
+    stateItemList.push(a);
+
     // 試合が終わった4人を退避
     const gameFinishMember = stateItem[coatNo].slice(0, 4);
     // 待機の末尾2人をコピー
@@ -179,6 +183,11 @@ function QuoteApp() {
     if (stateItem[coatNo].length < 4) {
       return;
     }
+
+    // 現在の状態を退避
+    const a = [];
+    stateItem.map((item) => a.push([].concat(item)));
+    stateItemList.push(a);
 
     // 試合が終わった4人を退避
     const gameFinishMember = stateItem[coatNo].slice(0, 4);
