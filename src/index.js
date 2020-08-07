@@ -148,8 +148,14 @@ function QuoteApp() {
   }
 
   function storageLoad() {
-    setStateItem(JSON.parse(sessionStorage.getItem("stateItem")).filter(group => group.length));
-    stateItemList = JSON.parse(sessionStorage.getItem("stateItemList"));
+    const stateItem = JSON.parse(sessionStorage.getItem("stateItem"));
+    const localStateItemList = JSON.parse(sessionStorage.getItem("stateItemList"));
+    if (!stateItem || !localStateItemList) {
+      return;
+    }
+
+    setStateItem(stateItem.filter(group => group.length));
+    stateItemList = localStateItemList;
   }
 
   var droppableCoatList = [];
