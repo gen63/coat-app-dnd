@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.js": "/coat-app-dnd/static/js/main.d9bbe3f5.chunk.js",
-    "main.js.map": "/coat-app-dnd/static/js/main.d9bbe3f5.chunk.js.map",
+    "main.css": "/coat-app-dnd/static/css/main.197a1f21.chunk.css",
+    "main.js": "/coat-app-dnd/static/js/main.cce79050.chunk.js",
+    "main.js.map": "/coat-app-dnd/static/js/main.cce79050.chunk.js.map",
     "runtime-main.js": "/coat-app-dnd/static/js/runtime-main.d79565b5.js",
     "runtime-main.js.map": "/coat-app-dnd/static/js/runtime-main.d79565b5.js.map",
-    "static/js/2.ded2ecc9.chunk.js": "/coat-app-dnd/static/js/2.ded2ecc9.chunk.js",
-    "static/js/2.ded2ecc9.chunk.js.map": "/coat-app-dnd/static/js/2.ded2ecc9.chunk.js.map",
+    "static/js/2.3f58f552.chunk.js": "/coat-app-dnd/static/js/2.3f58f552.chunk.js",
+    "static/js/2.3f58f552.chunk.js.map": "/coat-app-dnd/static/js/2.3f58f552.chunk.js.map",
     "index.html": "/coat-app-dnd/index.html",
-    "precache-manifest.ef4d7d47cb8c8e8b5b060acd666fedf9.js": "/coat-app-dnd/precache-manifest.ef4d7d47cb8c8e8b5b060acd666fedf9.js",
+    "precache-manifest.705bcb33b8502747bd9e4589fc428646.js": "/coat-app-dnd/precache-manifest.705bcb33b8502747bd9e4589fc428646.js",
     "service-worker.js": "/coat-app-dnd/service-worker.js",
-    "static/js/2.ded2ecc9.chunk.js.LICENSE.txt": "/coat-app-dnd/static/js/2.ded2ecc9.chunk.js.LICENSE.txt"
+    "static/css/main.197a1f21.chunk.css.map": "/coat-app-dnd/static/css/main.197a1f21.chunk.css.map",
+    "static/js/2.3f58f552.chunk.js.LICENSE.txt": "/coat-app-dnd/static/js/2.3f58f552.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d79565b5.js",
-    "static/js/2.ded2ecc9.chunk.js",
-    "static/js/main.d9bbe3f5.chunk.js"
+    "static/js/2.3f58f552.chunk.js",
+    "static/css/main.197a1f21.chunk.css",
+    "static/js/main.cce79050.chunk.js"
   ]
 }
