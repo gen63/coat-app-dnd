@@ -41,9 +41,9 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: "none",
+
   padding: 5,
-  margin: 3,
-  width: 80,
+  margin: 5,
   justifyContent: "center",
   border: "solid",
 
@@ -56,19 +56,10 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
-  padding: 5,
-  paddingBottom: 35,
-  margin: 5,
-  width: 100,
-  minHeight: 200,
-  position: "relative"
+  padding: 2,
+  margin: 2,
+  width: "31%",
 });
-
-const buttonStyle = {
-  position: "absolute",
-  bottom: 0,
-  margin: 5,
-};
 
 const alignItemsStyle = {
   display: "flex",
@@ -78,7 +69,6 @@ const alignItemsStyle = {
 function QuoteApp() {
   // getItems = (count, offset = 0)
   const [stateItem, setStateItem] = useState([getItems(4), getItems(4, 4), getItems(4, 8), getItems(7, 12), getItems(6, 19)]);
-  // const [stateItem, setStateItem] = useState([getItems(4)]);
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -192,7 +182,7 @@ function QuoteApp() {
               </Draggable>
             ))}
             {provided.placeholder}
-            <button type="button" onClick={() => gameEnd(i)} style={buttonStyle}>終了</button>
+            <button type="button" onClick={() => gameEnd(i)}>終了</button>
           </div>
         )}
       </Droppable>
