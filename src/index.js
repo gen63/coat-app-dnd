@@ -10,8 +10,7 @@ const getItems = (count, offset = 0) =>
     content: `No${k + 1 + offset}`
   }));
 
-const stateItemList = [];
-var finishGameCount = 0;
+var stateItemList = [];
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -62,8 +61,14 @@ const getListStyle = isDraggingOver => ({
 });
 
 const alignItemsStyle = {
+  margin: 5,
   display: "flex",
   justifyContent: "center"
+};
+
+const buttonStyle = {
+  marginRight: 12,
+  marginLeft: 12,
 };
 
 function QuoteApp() {
@@ -95,35 +100,30 @@ function QuoteApp() {
     }
   }
 
-  function gameEndUndo() {
+  function undoGameFinish() {
     if (stateItemList.length < 1) {
       return;
     }
-
-    finishGameCount--;
 
     const newState = stateItemList[stateItemList.length - 1].slice();
     stateItemList.pop();
     setStateItem(newState);
   }
 
-  const gameEnd = (coatNo) => {
-    // const coatNo = 0;
-    // コートの人数が4人以下の時は試合終了させない
+  const gameFinish = (coatNo) => {
+    // コートの人数が4人以外の時は試合終了させない
     if (stateItem[coatNo].length !== 4) {
       return;
     }
 
-    finishGameCount++;
-
-    // 現在の状態を退避
+    // シャローコピー回避のためstateItemListの中身を一つずつ退避
     const a = [];
     stateItem.map((item) => a.push([].concat(item)));
     stateItemList.push(a);
 
     // 試合が終わった4人を退避
     const gameFinishMember = stateItem[coatNo].slice(0, 4);
-    // 待機の末尾2人をコピー
+    // 待機の末尾2人を退避
     const waitLast2Member = stateItem[3].slice(stateItem[3].length - 2, stateItem[3].length);
 
     const newState = [...stateItem];
@@ -140,6 +140,16 @@ function QuoteApp() {
     [...Array(4)].map(() => newState[3].shift());
 
     setStateItem(newState.filter(group => group.length));
+  }
+
+  function storageSave() {
+    sessionStorage.setItem("stateItem", JSON.stringify(stateItem));
+    sessionStorage.setItem("stateItemList", JSON.stringify(stateItemList));
+  }
+
+  function storageLoad() {
+    setStateItem(JSON.parse(sessionStorage.getItem("stateItem")).filter(group => group.length));
+    stateItemList = JSON.parse(sessionStorage.getItem("stateItemList"));
   }
 
   var droppableCoatList = [];
@@ -182,7 +192,7 @@ function QuoteApp() {
               </Draggable>
             ))}
             {provided.placeholder}
-            <button type="button" onClick={() => gameEnd(i)}>終了</button>
+            <button type="button" onClick={() => gameFinish(i)}>終了</button>
           </div>
         )}
       </Droppable>
@@ -196,7 +206,10 @@ function QuoteApp() {
           {droppableCoatList}
         </div>
         <div style={alignItemsStyle}>
-          <button type="button" onClick={gameEndUndo}>Ctrl+Z</button>　{finishGameCount}ゲーム終了
+          {stateItemList.length}ゲーム終了&nbsp;&nbsp;
+          <button type="button" onClick={undoGameFinish} style={buttonStyle}>Ctrl+Z</button>
+          <button type="button" onClick={storageSave} style={buttonStyle}>Save</button>
+          <button type="button" onClick={storageLoad} style={buttonStyle}>Load</button>
         </div>
         <div style={alignItemsStyle}>
           <Droppable key={3} droppableId={`${3}`}>
