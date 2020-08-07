@@ -105,7 +105,7 @@ function QuoteApp() {
     }
   }
 
-  function undo() {
+  function gameEndUndo() {
     if (stateItemList.length < 1) {
       return;
     }
@@ -117,76 +117,8 @@ function QuoteApp() {
     setStateItem(newState);
   }
 
-  function gameEnd1() {
-    const coatNo = 0;
-    // コートの人数が4人以下の時は試合終了させない
-    if (stateItem[coatNo].length !== 4) {
-      return;
-    }
-
-    finishGameCount++;
-
-    // 現在の状態を退避
-    const a = [];
-    stateItem.map((item) => a.push([].concat(item)));
-    stateItemList.push(a);
-
-    // 試合が終わった4人を退避
-    const gameFinishMember = stateItem[coatNo].slice(0, 4);
-    // 待機の末尾2人をコピー
-    const waitLast2Member = stateItem[3].slice(stateItem[3].length - 2, stateItem[3].length);
-
-    const newState = [...stateItem];
-    // 待機の末尾2人を削除
-    [...Array(2)].map(() => newState[3].pop());
-    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 3)];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(0, 1)];
-    newState[3] = [...newState[3], ...waitLast2Member];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(3, 4)];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(1, 2)];
-
-    const nextGameMember = newState[3].slice(0, 4);
-    newState[coatNo] = nextGameMember;
-    [...Array(4)].map(() => newState[3].shift());
-
-    setStateItem(newState.filter(group => group.length));
-  }
-  function gameEnd2() {
-    const coatNo = 1;
-    // コートの人数が4人以下の時は試合終了させない
-    if (stateItem[coatNo].length !== 4) {
-      return;
-    }
-
-    finishGameCount++;
-
-    // 現在の状態を退避
-    const a = [];
-    stateItem.map((item) => a.push([].concat(item)));
-    stateItemList.push(a);
-
-    // 試合が終わった4人を退避
-    const gameFinishMember = stateItem[coatNo].slice(0, 4);
-    // 待機の末尾2人をコピー
-    const waitLast2Member = stateItem[3].slice(stateItem[3].length - 2, stateItem[3].length);
-
-    const newState = [...stateItem];
-    // 待機の末尾2人を削除
-    [...Array(2)].map(() => newState[3].pop());
-    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 3)];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(0, 1)];
-    newState[3] = [...newState[3], ...waitLast2Member];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(3, 4)];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(1, 2)];
-
-    const nextGameMember = newState[3].slice(0, 4);
-    newState[coatNo] = nextGameMember;
-    [...Array(4)].map(() => newState[3].shift());
-
-    setStateItem(newState.filter(group => group.length));
-  }
-  function gameEnd3() {
-    const coatNo = 2;
+  const gameEnd = (coatNo) => {
+    // const coatNo = 0;
     // コートの人数が4人以下の時は試合終了させない
     if (stateItem[coatNo].length !== 4) {
       return;
@@ -261,7 +193,7 @@ function QuoteApp() {
                   </Draggable>
                 ))}
                 {provided.placeholder}
-                <button type="button" onClick={gameEnd1} style={buttonStyle}>終了</button>
+                <button type="button" onClick={() => gameEnd(0)} style={buttonStyle}>終了</button>
               </div>
             )}
           </Droppable>
@@ -302,7 +234,7 @@ function QuoteApp() {
                   </Draggable>
                 ))}
                 {provided.placeholder}
-                <button type="button" onClick={gameEnd2} style={buttonStyle}>終了</button>
+                <button type="button" onClick={() => gameEnd(1)} style={buttonStyle}>終了</button>
               </div>
             )}
           </Droppable>
@@ -343,14 +275,14 @@ function QuoteApp() {
                   </Draggable>
                 ))}
                 {provided.placeholder}
-                <button type="button" onClick={gameEnd3} style={buttonStyle}>終了</button>
+                <button type="button" onClick={() => gameEnd(2)} style={buttonStyle}>終了</button>
               </div>
             )}
           </Droppable>
 
         </div>
         <div style={alignItemsStyle}>
-          <button type="button" onClick={undo}>Ctrl+Z</button>　{finishGameCount}ゲーム終了
+          <button type="button" onClick={gameEndUndo}>Ctrl+Z</button>　{finishGameCount}ゲーム終了
         </div>
         <div style={alignItemsStyle}>
           <Droppable key={3} droppableId={`${3}`}>
@@ -439,6 +371,5 @@ function QuoteApp() {
   );
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<QuoteApp />, rootElement);
+ReactDOM.render(<QuoteApp />, document.getElementById("root"));
 serviceWorker.register();
