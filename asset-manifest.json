@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/coat-app-dnd/static/js/main.e939c08c.chunk.js",
-    "main.js.map": "/coat-app-dnd/static/js/main.e939c08c.chunk.js.map",
+    "main.js": "/coat-app-dnd/static/js/main.d9bbe3f5.chunk.js",
+    "main.js.map": "/coat-app-dnd/static/js/main.d9bbe3f5.chunk.js.map",
     "runtime-main.js": "/coat-app-dnd/static/js/runtime-main.d79565b5.js",
     "runtime-main.js.map": "/coat-app-dnd/static/js/runtime-main.d79565b5.js.map",
     "static/js/2.ded2ecc9.chunk.js": "/coat-app-dnd/static/js/2.ded2ecc9.chunk.js",
     "static/js/2.ded2ecc9.chunk.js.map": "/coat-app-dnd/static/js/2.ded2ecc9.chunk.js.map",
     "index.html": "/coat-app-dnd/index.html",
-    "precache-manifest.7bb72d0d310dd63fe23f9435e529170b.js": "/coat-app-dnd/precache-manifest.7bb72d0d310dd63fe23f9435e529170b.js",
+    "precache-manifest.ef4d7d47cb8c8e8b5b060acd666fedf9.js": "/coat-app-dnd/precache-manifest.ef4d7d47cb8c8e8b5b060acd666fedf9.js",
     "service-worker.js": "/coat-app-dnd/service-worker.js",
     "static/js/2.ded2ecc9.chunk.js.LICENSE.txt": "/coat-app-dnd/static/js/2.ded2ecc9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d79565b5.js",
     "static/js/2.ded2ecc9.chunk.js",
-    "static/js/main.e939c08c.chunk.js"
+    "static/js/main.d9bbe3f5.chunk.js"
   ]
 }

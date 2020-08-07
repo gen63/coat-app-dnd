@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0b571e90acccecdccb157da0780b5b36",
+    "revision": "1795d3c2847c01908618e523fa2ac2b3",
     "url": "/coat-app-dnd/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coat-app-dnd/static/js/2.ded2ecc9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c95932a76c957eeb1f9c",
-    "url": "/coat-app-dnd/static/js/main.e939c08c.chunk.js"
+    "revision": "ec5be0dc98ba6013a93a",
+    "url": "/coat-app-dnd/static/js/main.d9bbe3f5.chunk.js"
   },
   {
     "revision": "8270c4b8d4b2d9654fcb",
