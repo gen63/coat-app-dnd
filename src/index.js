@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import * as serviceWorker from './serviceWorker';
+import EdiText from 'react-editext'
+import './index.css'
 
 // fake data generator
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
     id: `item-${k + offset}-${new Date().getTime()}`,
-    content: `No${k + 1 + offset}`
+    content: `${k + 1 + offset}`
   }));
 
 var stateItemList = [];
@@ -110,6 +112,17 @@ function QuoteApp() {
     setStateItem(newState);
   }
 
+  const onSave = (val, itemId) => {
+    const newState = [...stateItem];
+    newState.forEach(state => {
+      var findResult = state.find((item) => item.id === itemId);
+      if (findResult) {
+        findResult.content = val;
+      }
+    })
+    setStateItem(newState);
+  }
+
   const gameFinish = (onClickCoatNo) => {
     // コートの人数が4人以外の時は試合終了させない
     if (stateItem[onClickCoatNo].length !== 4) {
@@ -159,6 +172,22 @@ function QuoteApp() {
     stateItemList = localStateItemList;
   }
 
+  function editableText(item) {
+    return <EdiText
+      submitOnUnfocus
+      editOnViewClick={true}
+      type='text'
+      value={item.content}
+      hideIcons={true}
+      editButtonClassName="custom-edit-button"
+      cancelButtonClassName="custom-edit-button"
+      saveButtonClassName="custom-edit-button"
+      onSave={value => onSave(value, item.id)}
+      validation={val => (val.length > 0 && val.length < 5)}
+      validationMessage="1-4文字を許容"
+    />;
+  }
+
   var droppableCoatList = [];
   [...Array(3)].map((_, i) =>
     droppableCoatList.push(
@@ -192,7 +221,7 @@ function QuoteApp() {
                         justifyContent: "space-around"
                       }}
                     >
-                      {item.content}
+                      {editableText(item)}
                     </div>
                   </div>
                 )}
@@ -243,7 +272,7 @@ function QuoteApp() {
                             justifyContent: "space-around"
                           }}
                         >
-                          {item.content}
+                          {editableText(item)}
                         </div>
                       </div>
                     )}
@@ -283,7 +312,7 @@ function QuoteApp() {
                             justifyContent: "space-around"
                           }}
                         >
-                          {item.content}
+                          {editableText(item)}
                         </div>
                       </div>
                     )}
