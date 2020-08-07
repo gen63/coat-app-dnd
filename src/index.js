@@ -11,6 +11,7 @@ const getItems = (count, offset = 0) =>
   }));
 
 const stateItemList = [];
+var finishGameCount = 0;
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -108,6 +109,9 @@ function QuoteApp() {
     if (stateItemList.length < 1) {
       return;
     }
+
+    finishGameCount--;
+
     const newState = stateItemList[stateItemList.length - 1].slice();
     stateItemList.pop();
     setStateItem(newState);
@@ -119,6 +123,8 @@ function QuoteApp() {
     if (stateItem[coatNo].length !== 4) {
       return;
     }
+
+    finishGameCount++;
 
     // 現在の状態を退避
     const a = [];
@@ -152,6 +158,8 @@ function QuoteApp() {
       return;
     }
 
+    finishGameCount++;
+
     // 現在の状態を退避
     const a = [];
     stateItem.map((item) => a.push([].concat(item)));
@@ -183,6 +191,8 @@ function QuoteApp() {
     if (stateItem[coatNo].length !== 4) {
       return;
     }
+
+    finishGameCount++;
 
     // 現在の状態を退避
     const a = [];
@@ -340,7 +350,7 @@ function QuoteApp() {
 
         </div>
         <div style={alignItemsStyle}>
-          <button type="button" onClick={undo}>Ctrl+Z</button>
+          <button type="button" onClick={undo}>Ctrl+Z</button>　{finishGameCount}ゲーム終了
         </div>
         <div style={alignItemsStyle}>
           <Droppable key={3} droppableId={`${3}`}>
