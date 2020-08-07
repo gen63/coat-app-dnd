@@ -73,7 +73,7 @@ const buttonStyle = {
 
 function QuoteApp() {
   // getItems = (count, offset = 0)
-  const [stateItem, setStateItem] = useState([getItems(4), getItems(4, 4), getItems(4, 8), getItems(7, 12), getItems(6, 19)]);
+  const [stateItem, setStateItem] = useState([getItems(4), getItems(4, 4), getItems(4, 8), getItems(6, 12), getItems(7, 18)]);
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -110,9 +110,9 @@ function QuoteApp() {
     setStateItem(newState);
   }
 
-  const gameFinish = (coatNo) => {
+  const gameFinish = (onClickCoatNo) => {
     // コートの人数が4人以外の時は試合終了させない
-    if (stateItem[coatNo].length !== 4) {
+    if (stateItem[onClickCoatNo].length !== 4) {
       return;
     }
 
@@ -122,21 +122,22 @@ function QuoteApp() {
     stateItemList.push(a);
 
     // 試合が終わった4人を退避
-    const gameFinishMember = stateItem[coatNo].slice(0, 4);
-    // 待機の末尾2人を退避
-    const waitLast2Member = stateItem[3].slice(stateItem[3].length - 2, stateItem[3].length);
+    const gameFinishMember = stateItem[onClickCoatNo].slice(0, 4);
+    // 待機の末尾にいるメンバーを退避 1 or 2
+    const j = stateItemList.length % 2;
+    const waitLastMember = stateItem[3].slice(stateItem[3].length - (j + 1), stateItem[3].length);
 
     const newState = [...stateItem];
     // 待機の末尾2人を削除
-    [...Array(2)].map(() => newState[3].pop());
-    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 3)];
+    [...Array(j + 1)].map(() => newState[3].pop());
     newState[3] = [...newState[3], ...gameFinishMember.slice(0, 1)];
-    newState[3] = [...newState[3], ...waitLast2Member];
-    newState[3] = [...newState[3], ...gameFinishMember.slice(3, 4)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(2, 3)];
+    newState[3] = [...newState[3], ...waitLastMember];
     newState[3] = [...newState[3], ...gameFinishMember.slice(1, 2)];
+    newState[3] = [...newState[3], ...gameFinishMember.slice(3, 4)];
 
     const nextGameMember = newState[3].slice(0, 4);
-    newState[coatNo] = nextGameMember;
+    newState[onClickCoatNo] = nextGameMember;
     [...Array(4)].map(() => newState[3].shift());
 
     setStateItem(newState.filter(group => group.length));
@@ -198,7 +199,7 @@ function QuoteApp() {
               </Draggable>
             ))}
             {provided.placeholder}
-            <button type="button" onClick={() => gameFinish(i)}>終了</button>
+            <button type="button" style={{ height: 40, width: "100%" }} onClick={() => gameFinish(i)}>終了</button>
           </div>
         )}
       </Droppable>
@@ -210,12 +211,6 @@ function QuoteApp() {
       <div>
         <div style={alignItemsStyle}>
           {droppableCoatList}
-        </div>
-        <div style={alignItemsStyle}>
-          {stateItemList.length}ゲーム終了&nbsp;&nbsp;
-          <button type="button" onClick={undoGameFinish} style={buttonStyle}>Ctrl+Z</button>
-          <button type="button" onClick={storageSave} style={buttonStyle}>Save</button>
-          <button type="button" onClick={storageLoad} style={buttonStyle}>Load</button>
         </div>
         <div style={alignItemsStyle}>
           <Droppable key={3} droppableId={`${3}`}>
@@ -298,6 +293,12 @@ function QuoteApp() {
               </div>
             )}
           </Droppable>
+        </div>
+        <div style={alignItemsStyle}>
+          {stateItemList.length}ゲーム終了&nbsp;&nbsp;
+          <button type="button" onClick={undoGameFinish} style={buttonStyle}>Ctrl+Z</button>
+          <button type="button" onClick={storageSave} style={buttonStyle}>Save</button>
+          <button type="button" onClick={storageLoad} style={buttonStyle}>Load</button>
         </div>
       </div>
     </DragDropContext >
