@@ -63,7 +63,7 @@ const getListStyle = isDraggingOver => ({
 });
 
 const alignItemsStyle = {
-  margin: 5,
+  margin: 2,
   display: "flex",
   justifyContent: "center"
 };
@@ -174,15 +174,28 @@ function QuoteApp() {
 
   function editableText(item) {
     return <EdiText
-      submitOnUnfocus
-      editOnViewClick={true}
       type='text'
-      value={item.content}
-      hideIcons={true}
-      editButtonClassName="custom-edit-button"
-      cancelButtonClassName="custom-edit-button"
-      saveButtonClassName="custom-edit-button"
       onSave={value => onSave(value, item.id)}
+      value={item.content}
+      editOnViewClick={true}
+      hideIcons={true}
+      submitOnUnfocus
+      submitOnEnter
+      viewProps={{
+        style: {
+          width: "4em",
+          height: "1em",
+        }
+      }}
+      inputProps={{
+        style: {
+          fontSize: 16
+        }
+      }}
+      editButtonClassName="custom-edit-button"
+      saveButtonClassName="custom-edit-button"
+      cancelButtonClassName="custom-edit-button"
+      viewContainerClassName='view-container'
       validation={val => (val.length > 0 && val.length < 5)}
       validationMessage="1-4文字を許容"
     />;
