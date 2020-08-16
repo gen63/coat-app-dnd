@@ -49,7 +49,9 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   border: "solid",
 
   // change background colour if dragging
-  background: isDragging ? "lightgreen" : "grey",
+  background: isDragging ? "lightgreen" : "white",
+
+  fontWeight: "bold",
 
   // styles we need to apply on draggables
   ...draggableStyle
@@ -112,7 +114,7 @@ function QuoteApp() {
     setStateItem(newState);
   }
 
-  const onSave = (val, itemId) => {
+  const onSaveName = (val, itemId) => {
     const newState = [...stateItem];
     newState.forEach(state => {
       var findResult = state.find((item) => item.id === itemId);
@@ -175,7 +177,7 @@ function QuoteApp() {
   function editableText(item) {
     return <EdiText
       type='text'
-      onSave={value => onSave(value, item.id)}
+      onSave={value => onSaveName(value, item.id)}
       value={item.content}
       editOnViewClick={true}
       hideIcons={true}
@@ -192,9 +194,9 @@ function QuoteApp() {
           fontSize: 16
         }
       }}
-      editButtonClassName="custom-edit-button"
-      saveButtonClassName="custom-edit-button"
-      cancelButtonClassName="custom-edit-button"
+      editButtonClassName="custom-edit-button-hidden"
+      saveButtonClassName="custom-edit-button-hidden"
+      cancelButtonClassName="custom-edit-button-hidden"
       viewContainerClassName='view-container'
       validation={val => (val.length > 0 && val.length < 5)}
       validationMessage="1-4文字を許容"
@@ -337,7 +339,7 @@ function QuoteApp() {
           </Droppable>
         </div>
         <div style={alignItemsStyle}>
-          {stateItemList.length}ゲーム終了&nbsp;&nbsp;
+          {stateItemList.length}ゲーム終了
           <button type="button" onClick={undoGameFinish} style={buttonStyle}>Ctrl+Z</button>
           <button type="button" onClick={storageSave} style={buttonStyle}>Save</button>
           <button type="button" onClick={storageLoad} style={buttonStyle}>Load</button>
