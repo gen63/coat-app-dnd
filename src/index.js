@@ -46,7 +46,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   padding: 5,
   margin: 5,
   justifyContent: "center",
-  border: "solid",
+  border: "1px solid",
 
   // change background colour if dragging
   background: isDragging ? "lightgreen" : "white",
@@ -131,6 +131,9 @@ function QuoteApp() {
       return;
     }
 
+    // ゲーム終了時にオートセーブ
+    storageSave()
+
     // シャローコピー回避のためstateItemListの中身を一つずつ退避
     const a = [];
     stateItem.map((item) => a.push([].concat(item)));
@@ -159,13 +162,13 @@ function QuoteApp() {
   }
 
   function storageSave() {
-    sessionStorage.setItem("stateItem", JSON.stringify(stateItem));
-    sessionStorage.setItem("stateItemList", JSON.stringify(stateItemList));
+    localStorage.setItem("stateItem", JSON.stringify(stateItem));
+    localStorage.setItem("stateItemList", JSON.stringify(stateItemList));
   }
 
   function storageLoad() {
-    const stateItem = JSON.parse(sessionStorage.getItem("stateItem"));
-    const localStateItemList = JSON.parse(sessionStorage.getItem("stateItemList"));
+    const stateItem = JSON.parse(localStorage.getItem("stateItem"));
+    const localStateItemList = JSON.parse(localStorage.getItem("stateItemList"));
     if (!stateItem || !localStateItemList) {
       return;
     }
