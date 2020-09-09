@@ -201,8 +201,8 @@ function QuoteApp() {
       saveButtonClassName="custom-edit-button-hidden"
       cancelButtonClassName="custom-edit-button-hidden"
       viewContainerClassName='view-container'
-      validation={val => (val.length > 0 && val.length < 5)}
-      validationMessage="1-4文字を許容"
+      validation={val => (val.length > 0 && val.length < 6)}
+      validationMessage="1-5文字を許容"
     />;
   }
 
